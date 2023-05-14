@@ -1,0 +1,23 @@
+<h3>Books</h3>
+<% @lists.each do |list| %>
+  <p>
+  <span><%= list.title %></span>
+  <span><%= list.body%></span>
+  <%= link_to "Show", "/lists/#{list.id}" %>
+  <%= link_to "Edit", "/lists/#{list.id}/edit" %>
+  <%= link_to "Destroy", "lists/#{list.id}", method: :delete, "data-confirm" => "Are you sure？" %>
+  </p>
+<% end %>
+
+
+<h3>New book</h3>
+<!-- form_with部分 -->
+<%= form_with model: @list do |f| %>
+  <h6>Title</h6>
+  <%= f.text_field :title %>
+
+  <h6>Body</h6>
+  <%= f.text_area :body %>
+
+  <p><%= f.submit 'Create Book' %></p>
+<% end %>
