@@ -1,5 +1,15 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+
+
 <h3>Books</h3>
+
+<h4>Title :Body</h4>
+
 <% @lists.each do |list| %>
+
   <p>
   <span><%= list.title %></span>
   <span><%= list.body%></span>
@@ -11,7 +21,16 @@
 
 
 <h3>New book</h3>
-<!-- form_with部分 -->
+
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>errors prohibited this book from being saved:
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @list do |f| %>
   <h6>Title</h6>
   <%= f.text_field :title %>

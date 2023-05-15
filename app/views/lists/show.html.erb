@@ -1,3 +1,17 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>error prohibited this book from being saved:
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <p>
 <strong>Title:</strong>
 <%= @list.title %>
